@@ -36,6 +36,82 @@ Quickstart Looks like this:
 
 ```
   <?= net\frenzel\dynatable\yii2dynatable::widget([
+    'id' => "nameofthetablethatwillbedynamised"
   ]);
 
+```
+
+Template for table:
+
+```
+<table id="nameofthetablethatwillbedynamised">
+  <thead>
+    <tr>
+      <th data-dynatable-column="name">Name can contain anything now...</th>
+      <th>Hobby</th>
+      <th>Favorite Music</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fred</td>
+      <td>Roller Skating</td>
+      <td>Disco</td>
+    </tr>
+    <tr>
+      <td>Helen</td>
+      <td>Rock Climbing</td>
+      <td>Alternative</td>
+    </tr>
+    <tr>
+      <td>Glen</td>
+      <td>Traveling</td>
+      <td>Classical</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+extended options are:
+```
+'clientOptions' => [
+    'table' => [
+        'defaultColumnIdStyle' => 'trimDash' //can be "underscore" too - look dynatable.js website for more options
+    ],
+    'dataset' => [
+        'ajax' => true,
+        'ajaxUrl' => Url::to('/your/route/to/json'),
+        'ajaxOnLoad' => true,
+        'records' => [],
+    ],
+    'features' => [
+        'paginate' => false,
+        'recordCount' => false,
+        'sorting' => true,
+        'search' => false
+    ]
+]
+
+```
+
+if you are using ajax, you need to ensure, that the response looks like this:
+```json
+{
+  "records": [
+    {
+      "someAttribute": "I am record one",
+      "someOtherAttribute": "Fetched by AJAX"
+    },
+    {
+      "someAttribute": "I am record two",
+      "someOtherAttribute": "Cuz it's awesome"
+    },
+    {
+      "someAttribute": "I am record three",
+      "someOtherAttribute": "Yup, still AJAX"
+    }
+  ],
+  "queryRecordCount": 3,
+  "totalRecordCount": 3
+}
 ```
