@@ -71,7 +71,8 @@ class yii2dynatable extends elWidget
         $view = $this->getView();
 
         /** @var \yii\web\AssetBundle $assetClass */
-        $assets = CoreAsset::register($view);
+        LocalAsset::register($view);
+        CoreAsset::register($view);
 
         $cleanOptions = $this->getClientOptions();
         $js[] = "jQuery('#$id').dynatable($cleanOptions);";
