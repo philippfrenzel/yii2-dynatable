@@ -1,6 +1,6 @@
 <?php
 
-namespace net\frenzel\textareaautosize;
+namespace net\frenzel\dynatable;
 
 use Yii;
 use yii\web\AssetBundle;
@@ -23,7 +23,7 @@ class CoreAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        'jquery.dynatable.css'
+        //'jquery.dynatable.css'
     ];
 
     /**

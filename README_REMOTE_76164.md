@@ -1,7 +1,7 @@
-yii2-dynatable
+yii2-textareaautosize
 =====================
 JQuery Dynatable Yii2 Extension
-JQuery from: http://dynatable.com
+JQuery from: http://arshaw.com/fullcalendar/
 
 Yii2 Extension by <philipp@frenzel.net>
 
@@ -89,23 +89,10 @@ extended options are:
         'recordCount' => false,
         'sorting' => true,
         'search' => false
-    ],
-    'params' => [
-        //'queries' => 'queries',
-        'sorts' => 'sort',
-        'page' => 'pageCount',
-        'perPage' => 'perPage',
-        'offset' => 'offset',
-        'records' => 'items',
-        'record' => 'item',
-        'queryRecordCount' => 'totalCount',
-        'totalRecordCount' => 'totalCount'
     ]
 ]
 
 ```
-If you set the params like above, the dynatable should work fine with the build in yii2 rest api.
-
 
 if you are using ajax, you need to ensure, that the response looks like this:
 ```json
