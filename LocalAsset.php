@@ -23,7 +23,7 @@ class LocalAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        '/css/dynatable.css'
+        'css/dynatable.css'
     ];
 
     /**
