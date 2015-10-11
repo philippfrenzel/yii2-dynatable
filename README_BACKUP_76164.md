@@ -89,6 +89,7 @@ extended options are:
         'recordCount' => false,
         'sorting' => true,
         'search' => false
+<<<<<<< HEAD
     ],
     'params' => [
         //'queries' => 'queries',
@@ -100,12 +101,17 @@ extended options are:
         'record' => 'item',
         'queryRecordCount' => 'totalCount',
         'totalRecordCount' => 'totalCount'
+=======
+>>>>>>> 21a6bd7913af3d29e0321c956ff2f507467f585d
     ]
 ]
 
 ```
+<<<<<<< HEAD
 If you set the params like above, the dynatable should work fine with the build in yii2 rest api.
 
+=======
+>>>>>>> 21a6bd7913af3d29e0321c956ff2f507467f585d
 
 if you are using ajax, you need to ensure, that the response looks like this:
 ```json

@@ -15,14 +15,20 @@ use yii\web\View;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\JsExpression;
-use yii\widgets\InputWidget;
+use yii\base\Widget as elWidget;
 
-class yii2dynatable extends InputWidget
+class yii2dynatable extends elWidget
 {
     /**
      * @var array clientOptions the HTML attributes for the widget container tag.
      */
     public $clientOptions = [];
+
+    /**
+     * the options for this plugin
+     * @var array
+     */
+    public $options = [];
 
     /**
      * @var array HTML attributes for the displayed input
@@ -40,9 +46,6 @@ class yii2dynatable extends InputWidget
      */
     public function init()
     {        
-        ob_start();
-        ob_implicit_flush(false);
-
         //checks for the element id
         if (!isset($this->options['id'])) {
             $this->options['id'] = $this->getId();
@@ -55,14 +58,7 @@ class yii2dynatable extends InputWidget
      */
     public function run()
     {   
-        $this->options['data-plugin-name'] = $this->_pluginName;
-
-        if (!isset($this->options['class'])) {
-            $this->options['class'] = 'dynatable';
-        }
-        
-        echo Html::beginTag('div', $this->options) . "\n";
-        echo Html::endTag('div')."\n";
+        //$this->options['data-plugin-name'] = $this->_pluginName;
         $this->registerPlugin();
     }
 
@@ -88,6 +84,7 @@ class yii2dynatable extends InputWidget
      */
     protected function getClientOptions()
     {
+        $options = [];
         $id = $this->options['id'];
         /*$options['loading'] = new JsExpression("function(isLoading, view ) {
                 jQuery('#{$id}').find('.fc-loading').toggle(isLoading);
