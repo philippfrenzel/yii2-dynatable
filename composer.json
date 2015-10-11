@@ -1,0 +1,31 @@
+{
+	"name": "philippfrenzel/yii2-dynatable",
+	"description": "Yii2 dynatable Widgets",
+	"keywords": ["yii2", "dynatable"],
+	"homepage": "http://www.frenzel.net/",
+	"type": "yii2-extension",
+	"license": "MIT",
+	"authors": [
+		{
+			"name" : "Philipp Frenzel",
+			"email" : "philipp@frenzel.net",
+			"homepage" : "http://www.frenzel.net/",
+			"role" : "Developer"
+		}
+	],
+	"support": {
+		"source" : "https://github.com/philippfrenzel/yii2-dynatable"
+	},
+	"minimum-stability" : "stable",
+	"require": {
+		"php" : ">=5.4.0",
+		"yiisoft/yii2" : "*",
+		"bower-asset/dynatable" : "~0.3.1"
+	},
+	"require-dev": {
+		"codeception/codeception": "*"
+	},
+	"autoload": {
+		"psr-4": { "net\\frenzel\\dynatable\\": "" }
+	}
+}
