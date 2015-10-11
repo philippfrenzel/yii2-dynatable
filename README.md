@@ -1,7 +1,7 @@
-yii2-textareaautosize
+yii2-dynatable
 =====================
 JQuery Dynatable Yii2 Extension
-JQuery from: http://arshaw.com/fullcalendar/
+JQuery from: http://dynatable.com
 
 Yii2 Extension by <philipp@frenzel.net>
 
@@ -36,6 +36,95 @@ Quickstart Looks like this:
 
 ```
   <?= net\frenzel\dynatable\yii2dynatable::widget([
+    'id' => "nameofthetablethatwillbedynamised"
   ]);
 
+```
+
+Template for table:
+
+```
+<table id="nameofthetablethatwillbedynamised">
+  <thead>
+    <tr>
+      <th data-dynatable-column="name">Name can contain anything now...</th>
+      <th>Hobby</th>
+      <th>Favorite Music</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Fred</td>
+      <td>Roller Skating</td>
+      <td>Disco</td>
+    </tr>
+    <tr>
+      <td>Helen</td>
+      <td>Rock Climbing</td>
+      <td>Alternative</td>
+    </tr>
+    <tr>
+      <td>Glen</td>
+      <td>Traveling</td>
+      <td>Classical</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+extended options are:
+```
+'clientOptions' => [
+    'table' => [
+        'defaultColumnIdStyle' => 'trimDash' //can be "underscore" too - look dynatable.js website for more options
+    ],
+    'dataset' => [
+        'ajax' => true,
+        'ajaxUrl' => Url::to('/your/route/to/json'),
+        'ajaxOnLoad' => true,
+        'records' => [],
+    ],
+    'features' => [
+        'paginate' => false,
+        'recordCount' => false,
+        'sorting' => true,
+        'search' => false
+    ],
+    'params' => [
+        //'queries' => 'queries',
+        'sorts' => 'sort',
+        'page' => 'pageCount',
+        'perPage' => 'perPage',
+        'offset' => 'offset',
+        'records' => 'items',
+        'record' => 'item',
+        'queryRecordCount' => 'totalCount',
+        'totalRecordCount' => 'totalCount'
+    ]
+]
+
+```
+If you set the params like above, the dynatable should work fine with the build in yii2 rest api.
+
+
+if you are using ajax, you need to ensure, that the response looks like this:
+```json
+{
+  "records": [
+    {
+      "someAttribute": "I am record one",
+      "someOtherAttribute": "Fetched by AJAX"
+    },
+    {
+      "someAttribute": "I am record two",
+      "someOtherAttribute": "Cuz it's awesome"
+    },
+    {
+      "someAttribute": "I am record three",
+      "someOtherAttribute": "Yup, still AJAX"
+    }
+  ],
+  "queryRecordCount": 3,
+  "totalRecordCount": 3
+}
 ```
