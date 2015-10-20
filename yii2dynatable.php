@@ -31,6 +31,14 @@ class yii2dynatable extends elWidget
     public $options = [];
 
     /**
+     * @var JSExpression event that will be fired after ajax reload
+     *
+     * dynatable:ajax success
+     *
+     */
+    public $EventAjaxSuccess = NULL;
+
+    /**
      * @var array HTML attributes for the displayed input
      */
     private $_displayOptions = [];
@@ -75,7 +83,12 @@ class yii2dynatable extends elWidget
         CoreAsset::register($view);
 
         $cleanOptions = $this->getClientOptions();
-        $js[] = "jQuery('#$id').dynatable($cleanOptions);";
+        $js[] = "var dynTable$id = jQuery('#$id').dynatable($cleanOptions);";
+
+        if(!is_null($this->EventAjaxSuccess)) {
+            $eventSuccess = $this->EventAjaxSuccess;
+            $js[] = "dynTable$id.bind('dynatable:ajax:success',$eventSuccess);";
+        }
     
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
