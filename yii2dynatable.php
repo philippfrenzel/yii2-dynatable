@@ -31,14 +31,6 @@ class yii2dynatable extends elWidget
     public $options = [];
 
     /**
-     * @var JSExpression event that will be fired after ajax reload
-     *
-     * dynatable:ajax success
-     *
-     */
-    public $EventAjaxSuccess = NULL;
-
-    /**
      * @var array HTML attributes for the displayed input
      */
     private $_displayOptions = [];
@@ -66,7 +58,6 @@ class yii2dynatable extends elWidget
      */
     public function run()
     {   
-        //$this->options['data-plugin-name'] = $this->_pluginName;
         $this->registerPlugin();
     }
 
@@ -83,12 +74,7 @@ class yii2dynatable extends elWidget
         CoreAsset::register($view);
 
         $cleanOptions = $this->getClientOptions();
-        $js[] = "var dynTable$id = jQuery('#$id').dynatable($cleanOptions);";
-
-        if(!is_null($this->EventAjaxSuccess)) {
-            $eventSuccess = $this->EventAjaxSuccess;
-            $js[] = "dynTable$id.bind('dynatable:ajax:success',$eventSuccess);";
-        }
+        $js[] = "jQuery('#$id').dynatable($cleanOptions);";
     
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
@@ -100,12 +86,6 @@ class yii2dynatable extends elWidget
     {
         $options = [];
         $id = $this->options['id'];
-        /*$options['loading'] = new JsExpression("function(isLoading, view ) {
-                jQuery('#{$id}').find('.fc-loading').toggle(isLoading);
-        }");
-        if ($this->eventRender){
-            $options['eventRender'] = new JsExpression($this->eventRender);
-        }*/
         $options = array_merge($options, $this->clientOptions);
         return Json::encode($options);
     }
