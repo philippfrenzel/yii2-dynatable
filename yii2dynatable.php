@@ -74,7 +74,7 @@ class yii2dynatable extends elWidget
         CoreAsset::register($view);
 
         $cleanOptions = $this->getClientOptions();
-        $js[] = "jQuery('#$id').dynatable($cleanOptions);";
+        $js[] = "var dynaT$id = jQuery('#$id').dynatable($cleanOptions);";
     
         $view->registerJs(implode("\n", $js),View::POS_READY);
     }
